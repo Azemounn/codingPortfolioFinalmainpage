@@ -86,3 +86,24 @@ document.addEventListener('DOMContentLoaded', () => {
     showSlide(currentSlide);
     updateProgressBar();
 });
+
+// Snapping Scroll Progress Indicator for Timeline Section
+const timelineSection = document.querySelector('#timeline');
+const timelineItems = document.querySelectorAll('.timeline-item');
+const timelineProgress = document.querySelector('.timeline-progress');
+
+function updateTimelineProgress() {
+    const sectionTop = timelineSection.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (sectionTop <= windowHeight && sectionTop + timelineSection.offsetHeight >= 0) {
+        timelineItems.forEach((item, index) => {
+            const itemTop = item.getBoundingClientRect().top;
+            if (itemTop <= windowHeight / 2) {
+                timelineProgress.style.height = `${((index + 1) / timelineItems.length) * 100}%`;
+            }
+        });
+    }
+}
+
+window.addEventListener('scroll', updateTimelineProgress);
