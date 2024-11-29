@@ -165,26 +165,6 @@ a:hover {
     color: #fff;
 }
 
-/* Animated Background */
-.animated-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(130deg, #ff6f61, #4fc3f7, #ff6f61);
-    background-size: 300% 300%;
-    z-index: 0;
-    animation: flowing-background 20s ease infinite;
-    opacity: 0.3;
-}
-
-@keyframes flowing-background {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
 /* About Section */
 .about {
     padding: 4rem 2rem;
@@ -319,11 +299,12 @@ a:hover {
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .timeline-item:hover {
     transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 111, 97, 0.5), 0 0 20px var(--highlight);
 }
 
 .timeline-item::before {
@@ -371,77 +352,46 @@ a:hover {
     transition: height 0.3s ease;
 }
 
-/* Floating Elements/Particles */
-.floating-particle {
-    position: absolute;
-    background: var(--highlight);
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    opacity: 0.8;
-    animation: floatAnimation 10s infinite ease-in-out;
-    box-shadow: 0 0 15px rgba(255, 111, 97, 0.5);
-}
 
-@keyframes floatAnimation {
-    0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.8;
-    }
-    50% {
-        transform: translateY(-20px) translateX(15px);
-        opacity: 0.5;
-    }
-    100% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.8;
-    }
-}
-
-/* Interactive Connectors */
-.timeline-connector {
-    position: absolute;
+/* Vertical Progress Scroll Indicator */
+.timeline-scroll-indicator {
+    position: fixed;
+    left: 30px;
     top: 50%;
-    left: -5px;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--highlight) 25%, var(--accent) 75%);
     transform: translateY(-50%);
-    animation: connectorAnimation 2s linear infinite alternate;
+    height: 60%;
+    width: 5px;
+    background: #2a2a2a;
     border-radius: 5px;
+    z-index: 1000;
 }
 
-@keyframes connectorAnimation {
-    0% {
-        opacity: 0.5;
-    }
-    100% {
-        opacity: 1;
-    }
+.timeline-progress {
+    width: 100%;
+    height: 0;
+    background: var(--highlight);
+    border-radius: 5px;
+    transition: height 0.3s ease;
 }
 
-/* Hover & Glow Effects for Timeline Items */
-.timeline-item:hover {
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--highlight);
-}
-
-/* Projects Section */
+/* Featured Projects Section */
 .projects {
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
     background: var(--primary-bg);
     text-align: center;
 }
 
 .projects h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     color: var(--highlight);
-    font-size: 2.5rem;
+    font-size: 2.8rem;
 }
 
 .project-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    align-items: stretch;
 }
 
 .project-card {
@@ -449,33 +399,72 @@ a:hover {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-    transition: transform 0.4s, box-shadow 0.4s;
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    position: relative;
+    padding: 2rem;
+    transform-origin: center;
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    z-index: 10; /* Ensures the hovered card overlaps other elements smoothly */
+}
+
+.project-image {
+    height: 250px; /* Increased height for better coverage */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.project-info {
+    padding-top: 1rem;
+}
+
+.project-info h3 {
+    color: var(--highlight);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.project-info p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    transition: opacity 0.6s ease;
+}
+
+.project-card:hover .project-info .preview-text {
+    display: none;
+}
+
+.extended-info {
+    display: none;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.project-card:hover .extended-info {
+    display: block;
 }
 
 .project-image {
     height: 200px;
     background-size: cover;
     background-position: center;
+    transition: transform 0.4s ease;
 }
 
-.project-info {
-    padding: 1.5rem;
+.project-card:hover .project-image {
+    transform: scale(1.05);
 }
 
 .project-info h3 {
     color: var(--highlight);
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
-}
-
-.project-info p {
-    color: var(--text-muted);
-    font-size: 1rem;
 }
 
 /* Testimonials Section */

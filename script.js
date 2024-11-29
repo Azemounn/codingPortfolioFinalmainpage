@@ -39,7 +39,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Progress Bars Animation with Debounce
+// Progress Bars Animation
 const progressBars = document.querySelectorAll('.progress');
 progressBars.forEach(bar => {
     const progress = bar.style.width;
@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const timelineSection = document.querySelector('#timeline');
 const timelineItems = document.querySelectorAll('.timeline-item');
 const timelineProgress = document.querySelector('.timeline-progress');
+const sections = document.querySelectorAll('section');
 
 function updateTimelineProgress() {
     const sectionTop = timelineSection.getBoundingClientRect().top;
@@ -106,4 +107,26 @@ function updateTimelineProgress() {
     }
 }
 
-window.addEventListener('scroll', updateTimelineProgress);
+function updateSectionProgress() {
+    let currentSectionIndex = -1;
+
+    sections.forEach((section, index) => {
+        const sectionTop = section.getBoundingClientRect().top;
+
+        if (sectionTop < window.innerHeight / 2) {
+            currentSectionIndex = index;
+        }
+    });
+
+    if (currentSectionIndex === -1) {
+        timelineProgress.style.height = '0%';
+    } else {
+        const progressHeight = ((currentSectionIndex + 1) / sections.length) * 100;
+        timelineProgress.style.height = `${progressHeight}%`;
+    }
+}
+
+window.addEventListener('scroll', () => {
+    updateTimelineProgress();
+    updateSectionProgress();
+});
