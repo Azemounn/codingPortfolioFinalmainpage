@@ -1,0 +1,628 @@
+/* Root Variables */
+:root {
+    --primary-bg: #0f0f0f;
+    --secondary-bg: #181818;
+    --highlight: #ff6f61;
+    --accent: #4fc3f7;
+    --text-light: #eaeaea;
+    --text-muted: #a4a4a4;
+    --font-family: 'Poppins', sans-serif;
+    --container-width: 1200px;
+    --transition-speed: 0.3s;
+}
+
+/* General Styles */
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    background: var(--primary-bg);
+    color: var(--text-light);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 {
+    font-weight: 800;
+    margin: 0;
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--highlight);
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 1rem;
+    background: linear-gradient(45deg, #ff6f61, #4fc3f7, #ff6f61);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+.hero-content {
+    z-index: 2;
+    padding: 2rem;
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    animation: heroBoxAnimation 1s ease-out forwards;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero .highlight {
+    color: var(--highlight);
+    text-shadow: 0 0 15px rgba(255, 111, 97, 0.5);
+}
+
+.hero p {
+    font-size: 1.7rem;
+    margin-bottom: 2.5rem;
+    font-weight: 600;
+}
+
+/* Gradient Background Animation */
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Hero Box Animation */
+@keyframes heroBoxAnimation {
+    0% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+/* Button Hover Animation */
+.cta-button {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background: var(--highlight);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background var(--transition-speed), transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::after {
+    content: "➜";
+    position: absolute;
+    right: -20px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.cta-button:hover::after {
+    right: 15px;
+    opacity: 1;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    background: var(--accent);
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: var(--secondary-bg);
+    padding: 1rem 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a {
+    font-size: 1rem;
+    color: var(--text-light);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background var(--transition-speed);
+}
+
+.navbar a:hover {
+    background: var(--highlight);
+    color: #fff;
+}
+
+/* About Section */
+.about {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: linear-gradient(to bottom, #181818, #121212);
+}
+
+.about h2 {
+    margin-bottom: 2rem;
+    color: var(--highlight);
+    font-size: 2.5rem;
+}
+
+.about-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.about-text {
+    flex: 1;
+    max-width: 500px;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Skills Section */
+.skills-section {
+    padding: 4rem 2rem;
+    background: var(--primary-bg);
+    text-align: center;
+}
+
+.skills-section h2 {
+    margin-bottom: 2rem;
+    color: var(--highlight);
+    font-size: 2.5rem;
+}
+
+.skills-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+}
+
+.skill-card {
+    background: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.skill-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.skill-card h3 {
+    color: var(--highlight);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.animated-underline {
+    width: 50%;
+    height: 4px;
+    background: var(--highlight);
+    margin: 0 auto 1rem auto;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+
+.skill-card:hover .animated-underline {
+    width: 80%;
+}
+
+.proficiency-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.3rem 0.7rem;
+    background: var(--highlight);
+    color: #fff;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.proficiency-badge.advanced {
+    background: var(--accent);
+}
+
+.proficiency-badge.expert {
+    background: #ff6f61;
+}
+
+/* Timeline Section */
+.timeline-section {
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, #121212, #181818);
+    position: relative;
+}
+
+.timeline-section h2 {
+    margin-bottom: 2rem;
+    color: var(--highlight);
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.timeline-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    position: relative;
+}
+
+.timeline-item {
+    position: relative;
+    background: var(--secondary-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(255, 111, 97, 0.5), 0 0 20px var(--highlight);
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    width: 20px;
+    height: 20px;
+    background: var(--highlight);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px rgba(255, 111, 97, 0.5);
+}
+
+.timeline-content h4 {
+    color: var(--highlight);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.timeline-content p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* Vertical Progress Scroll Indicator */
+.timeline-scroll-indicator {
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 5px;
+    background: #2a2a2a;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.timeline-progress {
+    width: 100%;
+    height: 0;
+    background: var(--highlight);
+    border-radius: 5px;
+    transition: height 0.3s ease;
+}
+
+
+/* Vertical Progress Scroll Indicator */
+.timeline-scroll-indicator {
+    position: fixed;
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 5px;
+    background: #2a2a2a;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.timeline-progress {
+    width: 100%;
+    height: 0;
+    background: var(--highlight);
+    border-radius: 5px;
+    transition: height 0.3s ease;
+}
+
+/* Featured Projects Section */
+.projects {
+    padding: 5rem 2rem;
+    background: var(--primary-bg);
+    text-align: center;
+}
+
+.projects h2 {
+    margin-bottom: 3rem;
+    color: var(--highlight);
+    font-size: 2.8rem;
+}
+
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.project-card {
+    background: var(--secondary-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.6s ease, box-shadow 0.6s ease;
+    position: relative;
+    padding: 2rem;
+    transform-origin: center;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    z-index: 10; /* Ensures the hovered card overlaps other elements smoothly */
+}
+
+.project-image {
+    height: 250px; /* Increased height for better coverage */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.project-info {
+    padding-top: 1rem;
+}
+
+.project-info h3 {
+    color: var(--highlight);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.project-info p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.5;
+    transition: opacity 0.6s ease;
+}
+
+.project-card:hover .project-info .preview-text {
+    display: none;
+}
+
+.extended-info {
+    display: none;
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.project-card:hover .extended-info {
+    display: block;
+}
+
+.project-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project-info h3 {
+    color: var(--highlight);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 4rem 2rem;
+    background: linear-gradient(to bottom, #121212, #181818);
+    text-align: center;
+}
+
+.testimonials h2 {
+    margin-bottom: 2rem;
+    color: var(--highlight);
+    font-size: 2.5rem;
+}
+
+.testimonial-slider {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.testimonial-slide {
+    min-width: 100%;
+    transition: transform 1s ease;
+    display: flex;
+    justify-content: space-around;
+}
+
+.testimonial {
+    padding: 2rem;
+    background: var(--secondary-bg);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 300px;
+    flex: 1;
+}
+
+.testimonial:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.testimonial p {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.testimonial span {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Progress Bar for Testimonial Slider */
+.progress-bar-container {
+    width: 100%;
+    height: 5px;
+    background: #2a2a2a;
+    margin-top: 1rem;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--highlight);
+    transition: width 5s linear;
+    width: 0%;
+}
+
+/* Contact Section */
+.contact {
+    padding: 4rem 2rem;
+    background: var(--primary-bg);
+    text-align: center;
+}
+
+.contact h2 {
+    margin-bottom: 2rem;
+    color: var(--highlight);
+    font-size: 2.5rem;
+}
+
+.styled-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.styled-form .input-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.styled-form .input-group input,
+.styled-form .input-group textarea {
+    width: 100%;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #1c1c1c;
+    color: var(--text-light);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.styled-form .input-group label {
+    position: absolute;
+    top: 1.2rem;
+    left: 1rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+    transition: 0.3s ease;
+}
+
+.styled-form .input-group input:focus + label,
+.styled-form .input-group textarea:focus + label,
+.styled-form .input-group input:not(:placeholder-shown) + label,
+.styled-form .input-group textarea:not(:placeholder-shown) + label {
+    top: -10px;
+    left: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+.styled-form button {
+    padding: 1rem 2rem;
+    background: var(--highlight);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background var(--transition-speed);
+}
+
+.styled-form button:hover {
+    background: var(--accent);
+}
+
+/* Footer */
+footer {
+    background: var(--secondary-bg);
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.footer-links a {
+    margin: 0 1rem;
+    font-weight: 600;
+    transition: color var(--transition-speed);
+}
+
+.footer-links a:hover {
+    color: var(--highlight);
+}
